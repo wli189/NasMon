@@ -1,119 +1,119 @@
-# NasMon — 文件预览流式传输
+# NasMon — Streaming File Previews
 
-NasMon 是一个 Synology NAS 管理 iOS App，当前版本支持仪表盘监控、文件管理器、视频/音频播放器和文件预览。此上下文记录**预览流式传输**的领域模型和决策。
+NasMon is an iOS app for managing Synology NAS devices. The current version supports Dashboard monitoring, file management, video and audio playback, and file previews. This context defines the domain model and architectural decisions for preview streaming.
 
 ## Language
 
-**Preview Category（预览分类）**:
-对 NAS 文件的预览显示方式的分类。包括 image、pdf、text、video、audio、quickLook 和 unsupported。
+**Preview Category**:
+A classification for how a NAS file is displayed in preview. Values include `image`, `pdf`, `text`, `video`, `audio`, `quickLook`, and `unsupported`.
 _Avoid_: preview type, file category
 
-**Preview Manager（预览管理器）**:
-负责获取可预览本地文件副本的协调层。职责：缓存检查 → 获取 → 返回本地 URL。不处理 UI 状态，也不决定使用哪个预览表面。
+**Preview Manager**:
+The coordination layer responsible for obtaining a local copy of a previewable file. Its responsibilities are cache lookup → fetch → return local URL. It does not manage UI state or choose the Preview Surface.
 _Avoid_: download manager, file fetcher
 
-**Preview Cache（预览缓存）**:
-存储在 `Caches/PreviewCache/` 目录下的本地文件缓存，通过文件路径的稳定哈希来建立映射关系。
+**Preview Cache**:
+A local file cache stored in `Caches/PreviewCache/`, mapped through a stable hash of the file path.
 
-**File Station Download API（文件站下载 API）**:
-Synology DSM 的 `/webapi/entry.cgi` 端点，使用 `SYNO.FileStation.Download` API 和 `mode=download` 参数从 NAS 获取文件内容。
+**File Station Download API**:
+The Synology DSM `/webapi/entry.cgi` endpoint using the `SYNO.FileStation.Download` API with `mode=download` to retrieve file content from the NAS.
 _Avoid_: download endpoint
 
-**WebDAV Server（WebDAV 服务）**:
-Synology NAS 上的 WebDAV 服务，支持原生 HTTP Range 请求，可作为一种传输通道获取文件字节。
+**WebDAV Server**:
+A WebDAV service on the Synology NAS that supports native HTTP Range requests and can serve as a Transport Channel for retrieving file bytes.
 
-**Transport Channel（传输通道）**:
-获取文件字节的通道。File Station Download API 是主通道，WebDAV 服务是可选的增强通道。
+**Transport Channel**:
+A channel for retrieving file bytes. The File Station Download API is the primary channel; the WebDAV Server is an optional enhanced channel.
 _Avoid_: download method, fetcher
 
-**Preview Surface（预览表面）**:
-呈现已取得预览内容并负责显示、滚动和交互行为的 UI 边界——例如图片查看器、PDFKit、Runestone 和 QuickLook。它不负责文件获取、传输或缓存。
+**Preview Surface**:
+The UI boundary that renders acquired preview content and owns its display, scrolling, and interaction behavior—for example, an image viewer, PDFKit, Runestone, or Quick Look. It does not acquire, transfer, or cache files.
 _Avoid_: previewer, preview UI
 
-**Preview Chrome（预览框架）**:
-包围 Preview Surface 的共享导航与操作界面。PDF 与 Code Preview 通过全屏 cover 进入，并使用显式返回按钮退出；文件获取流程不参与 presentation 决策。
+**Preview Chrome**:
+The shared navigation and action interface surrounding a Preview Surface. PDF and Code Preview enter through a full-screen cover and use an explicit back action to exit; file acquisition does not participate in presentation decisions.
 _Avoid_: preview toolbar, modal preview
 
-**Immersive Preview（沉浸预览）**:
-用户点击 Preview Surface 可切换 Preview Chrome 的显示与隐藏；切换只改变界面框架的可见性，不改变或跳转当前阅读位置。
+**Immersive Preview**:
+A user can tap a Preview Surface to show or hide Preview Chrome. Toggling changes only the visibility of the interface chrome; it does not alter or jump the current reading position.
 _Avoid_: scroll-triggered chrome, permanently visible chrome
 
-**Preview Session（预览会话）**:
-用户从文件列表进入单个文件预览，直到返回文件列表的连续阅读期间。阅读位置在该期间内跨 Chrome 切换、视口变化和渐进刷新保持；退出后不承诺再次打开时恢复位置。
+**Preview Session**:
+The continuous reading period from opening one file preview from the file list until returning to the file list. The reading position remains stable across Chrome toggles, viewport changes, and progressive refreshes during this period; reopening after exit does not promise position restoration.
 _Avoid_: persisted reading history, cross-session resume
 
-**Preview Interaction Priority（预览交互优先级）**:
-Preview Surface 的语义交互优先于 Preview Chrome 切换：PDF 链接与 annotation、文本选择、缩放、拖动和滚动先处理，只有未被内容消费的单击才切换 Chrome。
+**Preview Interaction Priority**:
+Semantic interactions in a Preview Surface take priority over toggling Preview Chrome: PDF links and annotations, text selection, zooming, dragging, and scrolling are handled first. Only taps not consumed by content toggle Chrome.
 _Avoid_: global tap interception, gesture-triggered chrome toggle
 
-**Preview Viewport（预览视口）**:
-当前设备和方向下未被 Preview Chrome 或系统区域遮挡、可用于阅读内容的可见区域。其边界必须随设备和窗口变化自适应，而不是由固定的横竖屏数值定义。
+**Preview Viewport**:
+The visible area available for reading content on the current device and orientation after Preview Chrome and system areas are excluded. Its bounds must adapt to device and window changes rather than being defined with fixed portrait or landscape constants.
 _Avoid_: fixed top inset, orientation constant
 
-**Preview Scroll Clearance（预览滚动净空）**:
-Preview Surface 背景可以延伸至屏幕边缘，但文档首尾必须能够滚动到系统遮挡区域之外并完整可见。首尾净空属于可滚动范围而不属于文档内容，并随实际 Preview Viewport 自适应；Chrome 隐藏时不改变当前阅读位置。
+**Preview Scroll Clearance**:
+A Preview Surface background may extend to the screen edges, but the beginning and end of a document must scroll beyond system-obscured areas and become fully visible. The clearance belongs to the scrollable range rather than document content, adapts to the actual Preview Viewport, and does not change the reading position when Chrome is hidden.
 _Avoid_: permanent safe-area strip, fixed scroll padding, document-owned spacer
 
-**Code Preview（代码预览）**:
-Text Preview Surface 的只读源码查阅体验，保持类似 VS Code 的行号、语法高亮、文本选择和复制能力，但不提供编辑能力，也不退化为普通文档排版。
+**Code Preview**:
+A read-only source-code browsing experience within the Text Preview Surface. It retains VS Code-like line numbers, syntax highlighting, text selection, and copying, but does not provide editing or degrade into plain document typography.
 _Avoid_: plain-text document preview, text editor
 
-**Adaptive Preview Appearance（自适应预览外观）**:
-Preview Chrome 和 Code Preview 跟随系统浅色或深色外观，代码画布、行号与语法颜色作为统一主题切换。PDF 画布跟随系统外观，但不改写 PDF 页面自身颜色。
+**Adaptive Preview Appearance**:
+Preview Chrome and Code Preview follow the system light or dark appearance, with the code canvas, line numbers, and syntax colors switching as one theme. The PDF canvas follows the system appearance but does not rewrite the PDF page’s own colors.
 _Avoid_: forced-dark code preview, preview-specific theme preference
 
-**Accessible Preview（无障碍预览）**:
-Preview Chrome 的文件信息、传输状态和操作具有明确的辅助功能语义。Code Preview 跟随系统文字大小，包括辅助功能字号；重新排版时保持源码位置，行号作为上下文而不是独立的重复焦点。减少动态效果开启时，Chrome 状态变化不使用位移或缩放。PDF 保留其原生文档无障碍能力。
+**Accessible Preview**:
+File information, transfer status, and actions in Preview Chrome have explicit accessibility semantics. Code Preview follows system text sizing, including accessibility sizes; when it reflows, it preserves the source position, and line numbers provide context instead of becoming repeated independent focus targets. With Reduce Motion enabled, Chrome state changes do not use translation or scale. PDFs retain their native document accessibility support.
 _Avoid_: fixed code font size, unlabeled preview action, individually focused line number, mandatory motion
 
-**Wrapped Code Preview（折行代码预览）**:
-超过 Preview Viewport 宽度的源码行按当前视口自动软换行，不提供水平滚动；同一源码行的所有视觉行共享一个源码行号。视口变化时重新折行并保持当前源码位置。
+**Wrapped Code Preview**:
+Source lines wider than the Preview Viewport soft-wrap for the current viewport; horizontal scrolling is not provided. All visual lines belonging to one source line share that source line number. The source position remains stable while rewrapping for viewport changes.
 _Avoid_: horizontal code scrolling, fixed-width code canvas
 
-**Continuous Document Preview（连续文档预览）**:
-PDF 页面按单页宽度纵向连续排列，横竖屏使用相同的阅读方向，并支持缩放。视口变化时应保持当前页和页内阅读位置。
+**Continuous Document Preview**:
+PDF pages are arranged in a continuous vertical, single-page-width flow with the same reading direction in portrait and landscape, and support zooming. Viewport changes should preserve the current page and in-page reading position.
 _Avoid_: horizontal paging, orientation-dependent paging
 
-**Preview Transfer Status（预览传输状态）**:
-Preview Chrome 中与文件名并列的临时状态，表示预览内容仍在到达；可计算总量时显示进度，否则显示不定进度。它随 Preview Chrome 一起隐藏，并在传输完成后消失。
+**Preview Transfer Status**:
+A temporary status displayed alongside the filename in Preview Chrome while preview content is still arriving. It shows determinate progress when the total is known and indeterminate progress otherwise. It hides with Preview Chrome and disappears when transfer completes.
 _Avoid_: content-overlay progress bar, persistent download banner
 
-**Preview Share（预览分享）**:
-通过系统分享界面导出已经完整到达的本地预览文件；内容仍在渐进到达时不可用，也不会为了分享启动另一套获取流程。
+**Preview Share**:
+Exports a fully acquired local preview file through the system share sheet. It is unavailable while content is still arriving and does not start a separate fetch flow just to share.
 _Avoid_: partial-file share, preview-specific download
 
-**Preview Content State（预览内容状态）**:
-Preview Surface 尚不能呈现内容或无法呈现内容时的明确反馈。初始等待使用居中的系统加载指示；可呈现渐进内容后，由 Preview Transfer Status 接续反馈。空文件、无法解码的文本和损坏的 PDF 使用居中的说明与可用的重试操作；这些状态下 Preview Chrome 保持可见。
+**Preview Content State**:
+Explicit feedback when a Preview Surface cannot yet render content or cannot render it at all. Initial waiting uses a centered system loading indicator; once progressive content can render, Preview Transfer Status continues the feedback. Empty files, undecodable text, and corrupted PDFs use centered explanation and an available retry action; Preview Chrome remains visible in these states.
 _Avoid_: blank loading canvas, silent failure, chrome-hidden error
 
-**Streaming Preview（流式预览）**:
-不等待完整下载即可显示或部分显示文件内容的机制，与当前"先完整下载再显示"的模式相对。
+**Streaming Preview**:
+A mechanism that displays all or part of a file without waiting for the full download, as opposed to the current “download completely, then display” model.
 _Avoid_: partial download, chunk loading
 
-**Progressive Rendering（渐进渲染）**:
-非媒体预览中"数据到达即显示"的渲染方式——PDF 先出首页、文本边下载边浏览、图片边下载边显示等。
+**Progressive Rendering**:
+A non-media rendering mode in which content displays as data arrives—for example, a PDF first page appears early, text can be browsed while downloading, or an image appears during download.
 _Avoid_: incremental loading, streaming UI
 
-**Stable Progressive Reading（稳定渐进阅读）**:
-渐进内容刷新时，Preview Surface 保持用户当前的源码位置或 PDF 页内位置；新增字节不会触发自动滚动，即使用户先前位于已到达内容的末尾。预览是文档阅读体验，不承担实时日志跟随职责。
+**Stable Progressive Reading**:
+When progressive content refreshes, the Preview Surface preserves the current source or PDF in-page position. Newly received bytes do not trigger automatic scrolling, even when the user had been at the end of received content. A preview is a document-reading experience, not a real-time log follower.
 _Avoid_: tail-following preview, progress-triggered scroll, refresh-to-top
 
-**Last Valid Preview（最后有效预览）**:
-渐进文件暂时无法解析时采用的内容状态。首次成功呈现前保持加载反馈；成功呈现后，后续临时解析失败保留最近一次有效内容并等待更多字节。只有完整文件仍无法呈现时才进入错误状态。
+**Last Valid Preview**:
+The content state used when a progressive file is temporarily unparsable. Before the first successful render it retains loading feedback; after a successful render, later temporary parsing failures retain the most recent valid content and wait for more bytes. It becomes an error only when the complete file still cannot render.
 _Avoid_: transient corruption error, blank-on-refresh, partial-file failure
 
-**Resumable Cache（可续传缓存）**:
-已到达的文件字节落盘保存、并支持从上次位置继续获取的缓存形态，是 Preview Cache 的一种条目。
+**Resumable Cache**:
+A Preview Cache entry that persists received file bytes and can continue fetching from its previous position.
 _Avoid_: partial file, chunk cache
 
-**Byte-Offset Resume（字节级续传）**:
-从上次中断的字节偏移处继续获取文件的能力，依赖传输通道支持 Range 请求。
+**Byte-Offset Resume**:
+The ability to continue fetching from the byte offset at which a previous transfer stopped, dependent on Range support from the Transport Channel.
 _Avoid_: true resume, range resume
 
-**Session Resume（会话内续传）**:
-在同一预览会话内暂停/恢复下载任务的能力；App 重启后不保证跨会话继续。
+**Session Resume**:
+The ability to pause and resume a download task within the same Preview Session. Continuation across an app restart is not guaranteed.
 _Avoid_: task resume
 
-**Fake Seek（伪跳转）**:
-在传输通道不支持 Range 时，通过从头重新流式获取并丢弃前缀字节，将读取位置推进到目标字节的定位机制。
+**Fake Seek**:
+A positioning mechanism for Transport Channels without Range support: it streams again from the beginning and discards prefix bytes to advance to the target byte offset.
 _Avoid_: simulated seek, seek workaround

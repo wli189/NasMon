@@ -1,8 +1,12 @@
-# NasMon Visual & UI Architecture Design Specification
+# NasMon Design System and UI Architecture
 
 > **Design Philosophy: Hybrid structure, unified visuals.**
 >
 > The outer shell uses native iOS skeletons for stability, familiarity, and ease of use; the Dashboard incorporates "Deep Sea Console" elements to emphasize NAS monitoring identity; file previews and media players follow a content-first immersive experience.
+
+## Scope and Implementation Source
+
+This document defines NasMon's visual language and UI behavior. The active design-system implementation is centered on `NasMon/DesignSystem/NasMonTheme.swift` and `NasMon/DesignSystem/Components/`. Feature views should use those semantic tokens and shared components rather than introduce page-specific visual values.
 
 ---
 
@@ -82,7 +86,7 @@ Design principles:
 
 - Content occupies the primary visual space.
 - Preview Chrome stays minimal: only back, file info, transfer status, and essential actions.
-- Chrome visibility changes must not shift the阅读 position.
+- Chrome visibility changes must not shift the reading position.
 - PDFs, code, and text prioritize readability over Dashboard decorative styling.
 - Errors, empty states, and loading states need explicit feedback; no blank canvases without indication.
 
@@ -106,7 +110,7 @@ Design principles:
 
 ## 3. Semantic Colors
 
-Business views must not scatter hex colors everywhere. Colors must be provided through Asset Catalog or Design System semantic tokens.
+Business views must not scatter hex colors everywhere. `NasMonTheme.swift` provides the active semantic token source through dynamic UIKit-backed colors; an Asset Catalog may be used only when a semantic token requires an asset.
 
 ### 3.1 Global Colors
 
@@ -134,17 +138,17 @@ Body text should prefer system semantic colors:
 
 ```swift
 extension Color {
-    static let nasMonAccent = Color("NasMonAccent")
-    static let nasMonPageBackground = Color("NasMonPageBackground")
-    static let nasMonSurface = Color("NasMonSurface")
-    static let nasMonSurfaceSecondary = Color("NasMonSurfaceSecondary")
-    static let nasMonOnline = Color("NasMonOnline")
-    static let nasMonWarning = Color("NasMonWarning")
-    static let nasMonCritical = Color("NasMonCritical")
+    static let nasMonAccent = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonPageBackground = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonSurface = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonSurfaceSecondary = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonOnline = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonWarning = Color.nasMonDynamic(light: ..., dark: ...)
+    static let nasMonCritical = Color.nasMonDynamic(light: ..., dark: ...)
 }
 ```
 
-Pages use semantic names, never raw `Color.blue` or RGB values:
+The dynamic-color helper is private to `NasMonTheme.swift`; feature views use the semantic names, never raw `Color.blue` or RGB values:
 
 ```swift
 .tint(.nasMonAccent)
@@ -223,7 +227,8 @@ Titles, server names, buttons, and error descriptions must not force monospaced 
 | `xLarge` | `24pt` | Large page sections |
 | `xxLarge` | `32pt` | Strong grouping & top whitespace |
 
-Suggested implementation:
+- `pageHorizontal` is the standard horizontal page inset.
+- `minimumTapTarget` sets the minimum interactive target size to `44pt`.
 
 ```swift
 enum NasMonSpacing {
@@ -234,6 +239,9 @@ enum NasMonSpacing {
     static let large: CGFloat = 16
     static let xLarge: CGFloat = 24
     static let xxLarge: CGFloat = 32
+
+    static let pageHorizontal: CGFloat = 16
+    static let minimumTapTarget: CGFloat = 44
 }
 ```
 
@@ -308,117 +316,39 @@ Different pages choose containers based on their task; don't force everything to
 
 ---
 
-## 9. Common Components
+## 9. Shared Components
 
-Suggested directory:
+The active shared design system is:
 
 ```text
 NasMon/DesignSystem/
-├── NasMonColors.swift
-├── NasMonSpacing.swift
-├── NasMonTypography.swift
-├── NasMonMetrics.swift
+├── NasMonTheme.swift
 └── Components/
-    ├── AppCard.swift
-    ├── MetricCard.swift
-    ├── StatusBadge.swift
-    ├── ServerCard.swift
-    ├── FileRow.swift
-    ├── PrimaryButton.swift
-    └── AppContentState.swift
+    ├── NasMonCard.swift
+    ├── NasMonCompactMetricCard.swift
+    ├── NasMonContentStateView.swift
+    ├── NasMonMetricCard.swift
+    ├── NasMonPrimaryButtonStyle.swift
+    └── NasMonStatusBadge.swift
 ```
 
-Components are responsible for consistent visuals and basic interaction only; they should not directly own network requests or business state machines.
+`NasMonTheme.swift` supplies semantic colors, spacing, corner radii, typography, and the shared `nasMonSurface` modifier. In addition to the standard metric style, `NasMonTypography.metricCompact` supports the dedicated two-column Dashboard metric treatment.
 
-### 9.1 Dashboard Card
+Components are responsible for consistent visuals and basic interaction only; they do not directly own network requests or business state machines.
 
-```swift
-struct ConsoleCard<Content: View>: View {
-    let title: String
-    @ViewBuilder let content: Content
+### 9.1 Cards and Metrics
 
-    init(
-        title: String,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.title = title
-        self.content = content()
-    }
+`NasMonCard` provides the bounded surface used by server, Dashboard, and settings UI. Its `.standard` style uses the primary surface; its `.console` style uses the secondary surface with a subtle border for Deep Sea Console contexts.
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: NasMonSpacing.medium) {
-            Text(title.uppercased())
-                .font(.caption.weight(.semibold))
-                .tracking(0.6)
-                .foregroundStyle(.secondary)
+`NasMonMetricCard` and `NasMonCompactMetricCard` present Dashboard metrics. They use semantic colors, `NasMonTypography.metric` or `NasMonTypography.metricCompact`, and tabular numerals for values that update over time.
 
-            content
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(NasMonSpacing.large)
-        .background(.nasMonSurface)
-        .clipShape(.rect(cornerRadius: 16))
-        .accessibilityElement(children: .contain)
-    }
-}
-```
+### 9.2 Content States and Primary Actions
 
-### 9.2 File List Row
-
-File rows should accept a file domain model or dedicated display model, not just `isFolder`.
-
-```swift
-struct FileRowView: View {
-    let file: DSMFile
-
-    var body: some View {
-        HStack(spacing: NasMonSpacing.medium) {
-            Image(systemName: file.iconName)
-                .font(.title3)
-                .foregroundStyle(file.iconColor)
-                .frame(width: 28)
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: NasMonSpacing.xSmall) {
-                Text(file.name)
-                    .font(.body)
-                    .foregroundStyle(.primary)
-                    .lineLimit(1)
-
-                Text(fileDetail)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-            }
-
-            Spacer(minLength: NasMonSpacing.small)
-
-            if file.isdir {
-                Image(systemName: "chevron.right")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.tertiary)
-                    .accessibilityHidden(true)
-            }
-        }
-        .contentShape(Rectangle())
-        .padding(.vertical, NasMonSpacing.xSmall)
-    }
-
-    private var fileDetail: String {
-        file.isdir
-            ? "Folder"
-            : "\(file.formattedSize) · \(file.formattedModifiedDate)"
-    }
-}
-```
+`NasMonContentStateView` standardizes loading, empty, error, and offline states. `NasMonPrimaryButtonStyle` provides the shared primary-action treatment.
 
 ### 9.3 Status Badge
 
-Status badges must combine:
-
-- Icon or shape
-- Text label
-- Semantic color
+`NasMonStatusBadge` combines an icon, text label, and semantic color. Never show just a colored dot without an accessibility label.
 
 Example:
 
@@ -427,8 +357,6 @@ Example:
 ! Warning
 × Offline
 ```
-
-Never show just a colored dot without an accessibility label.
 
 ---
 
@@ -443,28 +371,30 @@ Dashboard information order:
 5. Last update time & refresh state
 6. Server destructive actions
 
-### 10.1 Recommended Layout
+### 10.1 Current Layout
+
+The implemented Dashboard uses a `ScrollView` and `LazyVStack`, with a `LazyVGrid` for metrics:
 
 ```text
-Server Overview Main Card
+Server Overview Card
 
 CPU Metric Card      Memory Metric Card
 Temperature Card     Uptime Card
 
-Network or Storage Trend Chart
-
-Last Updated Time
-
+System Details
+Last Updated / Refresh State
 Server Actions
 ```
 
 Rules:
 
 - Prefer two-column metric cards at regular widths.
-- Automatically degrade to single-column on compact widths & accessibility font sizes.
-- Charts must not be the sole way to read current values.
-- Current values must have textual expressions.
-- High-utilization states should also display status labels like "High."
+- Degrade to one column for accessibility-sized Dynamic Type.
+- Current values always have textual expressions.
+- High-utilization states also display a status label such as “High.”
+- Server actions remain visually and semantically separate from routine refresh actions.
+
+Historical network or storage charts are not currently implemented. If added, they must not be the sole way to read current values.
 
 ---
 
@@ -486,12 +416,15 @@ The primary tap action should connect to the server; secondary actions like edit
 
 ### 11.2 Login Form
 
-- Continue using `Form`; don't build inputs from scratch.
-- Can add a top brand icon & short description.
+- Files is available to every authenticated account; Dashboard is available to administrator accounts.
+- Server selection shows saved server cards and supports add, edit, delete, and auto-login behavior.
+- Login continues to use a native `Form` with server identity and credentials sections.
+- File management uses a plain, custom scrolling file list with folder navigation and preview routing.
+- Settings use inset-grouped controls, including Preview Cache management.
 - Input errors display near their relevant fields.
 - Disable duplicate submissions during login.
-- Password, host, and account fields should have correct keyboards & autofill semantics.
-- Primary action uses an explicit confirm button; dismiss follows system behavior.
+- Password, host, and account fields should have correct keyboards and autofill semantics.
+- The primary action uses an explicit confirm button; dismissal follows system behavior.
 
 ---
 
@@ -519,45 +452,50 @@ Rules:
 
 ## 13. Previews & Players
 
-### 13.1 Preview Chrome
+### 13.1 Preview Routing and Chrome
 
-Shared Chrome can include:
+`PreviewRouter` classifies files as `image`, `pdf`, `text`, `video`, `audio`, `quickLook`, or `unsupported`. `PreviewRouteView` routes image, PDF, text, and Quick Look content; video and audio each enter their dedicated full-screen player route.
 
-- Back
+`DocumentPreviewContainer` supplies shared content-first chrome for image, PDF, and text previews. Quick Look retains its native preview surface with standalone close chrome.
+
+Shared chrome includes:
+
+- Close
 - Filename
-- Temporary transfer status
-- Share
-- Other necessary actions
+- Share when a completed local URL is available
+- Surface-specific essential actions
 
 Rules:
 
-- Chrome visibility changes only affect the chrome frame, not the阅读 position.
+- Image-preview Chrome visibility changes affect only the chrome frame, not the viewing position. PDF and text keep their chrome visible while content scrolls beneath it.
 - Sharing is unavailable while content is still transferring.
-- Distinguish clearly between initial load, progressive content, complete content, and error states.
+- The current implementation communicates loading and transfer progress in the preview surface; filename-adjacent Preview Transfer Status is future work.
+- Distinguish clearly between initial load, available content, complete content, and error states.
 - Chrome stays visible in error or empty states.
 
-### 13.2 PDF & Text
+### 13.2 Document and Image Previews
 
-- PDFs use continuous vertical scrolling.
-- Text & code follow system light or dark appearance.
-- Text font size responds to dynamic type.
-- Current reading position is preserved on content updates & device rotation.
-- Line numbers are contextual info, not independent repeated accessibility targets.
+- Images can progressively decode as bytes arrive.
+- PDFKit requires a complete local file; PDF previews wait for the completed download, then use continuous vertical scrolling and preserve the reading anchor across viewport changes.
+- Runestone text/code previews wait for a complete local file before opening. They follow the system light or dark appearance, respond to Dynamic Type, and treat line numbers as contextual information rather than repeated accessibility targets.
+- Quick Look requires a complete local file.
 
 ### 13.3 Audio Player
 
-- Dynamic gradient as the primary background strategy.
-- Use a clear default background when no valid cover color can be extracted.
-- Dark controls on lighter backgrounds; light controls on darker backgrounds.
-- Material blur only for local Chrome or buttons.
-- Progress bar, playback state, and volume controls must have explicit accessibility labels.
+- Audio uses an artwork-derived dark gradient when its cover has a usable dominant color.
+- When a usable palette is unavailable, audio falls back to a light-gray background with dark controls.
+- Audio controls remain visible; they do not auto-hide.
+- Material blur is limited to local chrome or buttons.
+- Progress, playback state, and volume controls have explicit accessibility labels.
 
 ### 13.4 Video Player
 
-- Uses a pure-black immersive background.
+- Video uses a pure-black immersive background.
 - Controls auto-hide on inactivity.
 - Playback failures, buffering, and loading states need explicit feedback.
-- When reduced motion is enabled, controls use fade-in/fade-out only.
+- When Reduce Motion is enabled, controls use fade-in/fade-out only.
+
+Media playback uses the custom streaming path. Complete cached media can play from the local cache.
 
 ---
 
@@ -673,43 +611,36 @@ Rules:
 
 ---
 
-## 18. Recommended Implementation Order
+## 18. Implementation Status and Ownership
 
-### Sprint 1: Design Foundation
+### Design Foundation
 
-- Create the Design System directory.
-- Establish semantic color Assets.
-- Establish spacing, typography, and corner radius tokens.
-- Create cards, status badges, and content state components.
-- Don't modify business logic yet.
+Implemented in:
 
-### Sprint 2: Main Framework & File Management
+- `NasMon/DesignSystem/NasMonTheme.swift`
+- `NasMon/DesignSystem/Components/`
 
-- Unify Tab names & icons.
-- Refactor file rows.
-- Organize paths & Toolbars.
-- Add long-press menus.
-- Unify Loading, Empty, and Error states.
+### Main Application Shell
 
-### Sprint 3: Dashboard
+Implemented in the server selection, login, feature selection, file manager, and settings views. The shell preserves native navigation and form behavior while applying the shared design-system tokens.
 
-- Convert setting-style `LabeledContent` to metric cards.
-- Add visual expressions for CPU, memory, and temperature.
-- Establish server health status.
-- Dedicated destructive actions section.
+### Dashboard
 
-### Sprint 4: Connection Flow
+Implemented in `NasMon/Views/DashboardView.swift` with `NasMonCompactMetricCard`, `NasMonMetricCard`, and `NasMonStatusBadge`.
 
-- Build server cards.
-- Unify online, offline, and logging-in states.
-- Improve login form hierarchy & error feedback.
+### File Previews
 
-### Sprint 5: Previews & Media
+Implemented through `PreviewRouter`, `PreviewManager`, `PreviewRouteView`, `DocumentPreviewContainer`, `ImagePreviewView`, `PDFPreviewView`, and `TextPreviewView`.
 
-- Unify Preview Chrome.
-- Unify back, share, loading, and error states.
-- Retain distinct immersive character per content type.
-- Check landscape, dark mode, and accessibility.
+### Media Playback
+
+Implemented through `MediaPlayerViewModel`, `StreamingMediaDataSource`, `VideoPlayerView`, `AudioPlayerView`, and the shared player controls.
+
+### Known Gaps and Future Work
+
+- Historical Dashboard charts.
+- Filename-adjacent Preview Transfer Status in Preview Chrome.
+- Fully progressive PDF and text presentation, if it becomes reliable with the selected reader surfaces.
 
 ---
 
