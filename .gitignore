@@ -1,0 +1,40 @@
+# Secrets and API Keys
+config/*.key
+*.env
+.env
+
+# OS generated
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.hmap
+*.ipa
+*.xcworkspace/
+*.pbxproj.xcscheme
+*.xcuserdata
+
+# CocoaPods
+Pods/
+local.xcconfig
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# .scratch for agent-generated files
+.scratch/

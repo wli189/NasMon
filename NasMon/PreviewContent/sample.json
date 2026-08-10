@@ -1,0 +1,19 @@
+{
+  "system": {
+    "model": "DS224+",
+    "dsmVersion": "7.3.2-64570",
+    "cpu": "Celeron J4125",
+    "ram": 18432
+  },
+  "shares": [
+    { "name": "home", "path": "/home", "quota": "2 TB" },
+    { "name": "media", "path": "/media", "quota": "4 TB" },
+    { "name": "backup", "path": "/backup", "quota": "1 TB" }
+  ],
+  "services": [
+    { "name": "File Station", "status": "running" },
+    { "name": "Download Station", "status": "running" },
+    { "name": "Media Server", "status": "running" },
+    { "name": "Surveillance Station", "status": "stopped" }
+  ]
+}

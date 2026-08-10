@@ -1,0 +1,750 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D3BBB07D3023A910006A3140 /* Runestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000001 /* Runestone */; };
+		D3BBB07E3023A910006A3140 /* TreeSitterBashRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000002 /* TreeSitterBashRunestone */; };
+		D3BBB07F3023A910006A3140 /* TreeSitterCRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000003 /* TreeSitterCRunestone */; };
+		D3BBB0803023A910006A3140 /* TreeSitterCPPRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000004 /* TreeSitterCPPRunestone */; };
+		D3BBB0813023A910006A3140 /* TreeSitterCSSRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000005 /* TreeSitterCSSRunestone */; };
+		D3BBB0823023A910006A3140 /* TreeSitterGoRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000006 /* TreeSitterGoRunestone */; };
+		D3BBB0833023A910006A3140 /* TreeSitterHTMLRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000007 /* TreeSitterHTMLRunestone */; };
+		D3BBB0843023A910006A3140 /* TreeSitterJavaRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000008 /* TreeSitterJavaRunestone */; };
+		D3BBB0853023A910006A3140 /* TreeSitterJavaScriptRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000009 /* TreeSitterJavaScriptRunestone */; };
+		D3BBB0863023A910006A3140 /* TreeSitterJSONRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000010 /* TreeSitterJSONRunestone */; };
+		D3BBB0873023A910006A3140 /* TreeSitterMarkdownRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000011 /* TreeSitterMarkdownRunestone */; };
+		D3BBB0883023A910006A3140 /* TreeSitterPHPRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000012 /* TreeSitterPHPRunestone */; };
+		D3BBB0893023A910006A3140 /* TreeSitterPythonRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000013 /* TreeSitterPythonRunestone */; };
+		D3BBB08A3023A910006A3140 /* TreeSitterRubyRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000014 /* TreeSitterRubyRunestone */; };
+		D3BBB08B3023A910006A3140 /* TreeSitterSQLRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000015 /* TreeSitterSQLRunestone */; };
+		D3BBB08C3023A910006A3140 /* TreeSitterSwiftRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000016 /* TreeSitterSwiftRunestone */; };
+		D3BBB08D3023A910006A3140 /* TreeSitterTypeScriptRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000017 /* TreeSitterTypeScriptRunestone */; };
+		D3BBB08E3023A910006A3140 /* TreeSitterYAMLRunestone in Frameworks */ = {isa = PBXBuildFile; productRef = B10000000000000000000018 /* TreeSitterYAMLRunestone */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D39EE00B301BE21F00962BA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D39EDFF3301BE21E00962BA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D39EDFFA301BE21E00962BA1;
+			remoteInfo = NasMon;
+		};
+		D39EE015301BE21F00962BA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D39EDFF3301BE21E00962BA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D39EDFFA301BE21E00962BA1;
+			remoteInfo = NasMon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D39EDFFB301BE21E00962BA1 /* NasMon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasMon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D39EE00A301BE21F00962BA1 /* NasMonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasMonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D39EE014301BE21F00962BA1 /* NasMonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasMonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D39EDFFD301BE21E00962BA1 /* NasMon */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NasMon;
+			sourceTree = "<group>";
+		};
+		D39EE00D301BE21F00962BA1 /* NasMonTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NasMonTests;
+			sourceTree = "<group>";
+		};
+		D39EE017301BE21F00962BA1 /* NasMonUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NasMonUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D39EDFF8301BE21E00962BA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3BBB08E3023A910006A3140 /* TreeSitterYAMLRunestone in Frameworks */,
+				D3BBB08D3023A910006A3140 /* TreeSitterTypeScriptRunestone in Frameworks */,
+				D3BBB08C3023A910006A3140 /* TreeSitterSwiftRunestone in Frameworks */,
+				D3BBB08B3023A910006A3140 /* TreeSitterSQLRunestone in Frameworks */,
+				D3BBB08A3023A910006A3140 /* TreeSitterRubyRunestone in Frameworks */,
+				D3BBB0893023A910006A3140 /* TreeSitterPythonRunestone in Frameworks */,
+				D3BBB0883023A910006A3140 /* TreeSitterPHPRunestone in Frameworks */,
+				D3BBB0873023A910006A3140 /* TreeSitterMarkdownRunestone in Frameworks */,
+				D3BBB0863023A910006A3140 /* TreeSitterJSONRunestone in Frameworks */,
+				D3BBB0853023A910006A3140 /* TreeSitterJavaScriptRunestone in Frameworks */,
+				D3BBB0843023A910006A3140 /* TreeSitterJavaRunestone in Frameworks */,
+				D3BBB0833023A910006A3140 /* TreeSitterHTMLRunestone in Frameworks */,
+				D3BBB0823023A910006A3140 /* TreeSitterGoRunestone in Frameworks */,
+				D3BBB0813023A910006A3140 /* TreeSitterCSSRunestone in Frameworks */,
+				D3BBB0803023A910006A3140 /* TreeSitterCPPRunestone in Frameworks */,
+				D3BBB07F3023A910006A3140 /* TreeSitterCRunestone in Frameworks */,
+				D3BBB07E3023A910006A3140 /* TreeSitterBashRunestone in Frameworks */,
+				D3BBB07D3023A910006A3140 /* Runestone in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE007301BE21F00962BA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE011301BE21F00962BA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D39EDFF2301BE21E00962BA1 = {
+			isa = PBXGroup;
+			children = (
+				D39EDFFD301BE21E00962BA1 /* NasMon */,
+				D39EE00D301BE21F00962BA1 /* NasMonTests */,
+				D39EE017301BE21F00962BA1 /* NasMonUITests */,
+				D39EDFFC301BE21E00962BA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D39EDFFC301BE21E00962BA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D39EDFFB301BE21E00962BA1 /* NasMon.app */,
+				D39EE00A301BE21F00962BA1 /* NasMonTests.xctest */,
+				D39EE014301BE21F00962BA1 /* NasMonUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D39EDFFA301BE21E00962BA1 /* NasMon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D39EE01E301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMon" */;
+			buildPhases = (
+				D39EDFF7301BE21E00962BA1 /* Sources */,
+				D39EDFF8301BE21E00962BA1 /* Frameworks */,
+				D39EDFF9301BE21E00962BA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D39EDFFD301BE21E00962BA1 /* NasMon */,
+			);
+			name = NasMon;
+			packageProductDependencies = (
+				B10000000000000000000001 /* Runestone */,
+				B10000000000000000000002 /* TreeSitterBashRunestone */,
+				B10000000000000000000003 /* TreeSitterCRunestone */,
+				B10000000000000000000004 /* TreeSitterCPPRunestone */,
+				B10000000000000000000005 /* TreeSitterCSSRunestone */,
+				B10000000000000000000006 /* TreeSitterGoRunestone */,
+				B10000000000000000000007 /* TreeSitterHTMLRunestone */,
+				B10000000000000000000008 /* TreeSitterJavaRunestone */,
+				B10000000000000000000009 /* TreeSitterJavaScriptRunestone */,
+				B10000000000000000000010 /* TreeSitterJSONRunestone */,
+				B10000000000000000000011 /* TreeSitterMarkdownRunestone */,
+				B10000000000000000000012 /* TreeSitterPHPRunestone */,
+				B10000000000000000000013 /* TreeSitterPythonRunestone */,
+				B10000000000000000000014 /* TreeSitterRubyRunestone */,
+				B10000000000000000000015 /* TreeSitterSQLRunestone */,
+				B10000000000000000000016 /* TreeSitterSwiftRunestone */,
+				B10000000000000000000017 /* TreeSitterTypeScriptRunestone */,
+				B10000000000000000000018 /* TreeSitterYAMLRunestone */,
+			);
+			productName = NasMon;
+			productReference = D39EDFFB301BE21E00962BA1 /* NasMon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D39EE009301BE21F00962BA1 /* NasMonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D39EE021301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMonTests" */;
+			buildPhases = (
+				D39EE006301BE21F00962BA1 /* Sources */,
+				D39EE007301BE21F00962BA1 /* Frameworks */,
+				D39EE008301BE21F00962BA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D39EE00C301BE21F00962BA1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D39EE00D301BE21F00962BA1 /* NasMonTests */,
+			);
+			name = NasMonTests;
+			packageProductDependencies = (
+			);
+			productName = NasMonTests;
+			productReference = D39EE00A301BE21F00962BA1 /* NasMonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D39EE013301BE21F00962BA1 /* NasMonUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D39EE024301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMonUITests" */;
+			buildPhases = (
+				D39EE010301BE21F00962BA1 /* Sources */,
+				D39EE011301BE21F00962BA1 /* Frameworks */,
+				D39EE012301BE21F00962BA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D39EE016301BE21F00962BA1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D39EE017301BE21F00962BA1 /* NasMonUITests */,
+			);
+			name = NasMonUITests;
+			packageProductDependencies = (
+			);
+			productName = NasMonUITests;
+			productReference = D39EE014301BE21F00962BA1 /* NasMonUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D39EDFF3301BE21E00962BA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					D39EDFFA301BE21E00962BA1 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					D39EE009301BE21F00962BA1 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = D39EDFFA301BE21E00962BA1;
+					};
+					D39EE013301BE21F00962BA1 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = D39EDFFA301BE21E00962BA1;
+					};
+				};
+			};
+			buildConfigurationList = D39EDFF6301BE21E00962BA1 /* Build configuration list for PBXProject "NasMon" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D39EDFF2301BE21E00962BA1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A10000000000000000000001 /* XCRemoteSwiftPackageReference "Runestone" */,
+				A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D39EDFFC301BE21E00962BA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D39EDFFA301BE21E00962BA1 /* NasMon */,
+				D39EE009301BE21F00962BA1 /* NasMonTests */,
+				D39EE013301BE21F00962BA1 /* NasMonUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D39EDFF9301BE21E00962BA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE008301BE21F00962BA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE012301BE21F00962BA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D39EDFF7301BE21E00962BA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE006301BE21F00962BA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D39EE010301BE21F00962BA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D39EE00C301BE21F00962BA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D39EDFFA301BE21E00962BA1 /* NasMon */;
+			targetProxy = D39EE00B301BE21F00962BA1 /* PBXContainerItemProxy */;
+		};
+		D39EE016301BE21F00962BA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D39EDFFA301BE21E00962BA1 /* NasMon */;
+			targetProxy = D39EE015301BE21F00962BA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D39EE01C301BE21F00962BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D39EE01D301BE21F00962BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D39EE01F301BE21F00962BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 932AJN75G8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D39EE020301BE21F00962BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 932AJN75G8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D39EE022301BE21F00962BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasMon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NasMon";
+			};
+			name = Debug;
+		};
+		D39EE023301BE21F00962BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasMon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NasMon";
+			};
+			name = Release;
+		};
+		D39EE025301BE21F00962BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NasMon;
+			};
+			name = Debug;
+		};
+		D39EE026301BE21F00962BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = brian.NasMonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NasMon;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D39EDFF6301BE21E00962BA1 /* Build configuration list for PBXProject "NasMon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D39EE01C301BE21F00962BA1 /* Debug */,
+				D39EE01D301BE21F00962BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D39EE01E301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D39EE01F301BE21F00962BA1 /* Debug */,
+				D39EE020301BE21F00962BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D39EE021301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D39EE022301BE21F00962BA1 /* Debug */,
+				D39EE023301BE21F00962BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D39EE024301BE21F00962BA1 /* Build configuration list for PBXNativeTarget "NasMonUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D39EE025301BE21F00962BA1 /* Debug */,
+				D39EE026301BE21F00962BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000001 /* XCRemoteSwiftPackageReference "Runestone" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simonbs/Runestone";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.2;
+			};
+		};
+		A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simonbs/TreeSitterLanguages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B10000000000000000000001 /* Runestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000001 /* XCRemoteSwiftPackageReference "Runestone" */;
+			productName = Runestone;
+		};
+		B10000000000000000000002 /* TreeSitterBashRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterBashRunestone;
+		};
+		B10000000000000000000003 /* TreeSitterCRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterCRunestone;
+		};
+		B10000000000000000000004 /* TreeSitterCPPRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterCPPRunestone;
+		};
+		B10000000000000000000005 /* TreeSitterCSSRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterCSSRunestone;
+		};
+		B10000000000000000000006 /* TreeSitterGoRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterGoRunestone;
+		};
+		B10000000000000000000007 /* TreeSitterHTMLRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterHTMLRunestone;
+		};
+		B10000000000000000000008 /* TreeSitterJavaRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterJavaRunestone;
+		};
+		B10000000000000000000009 /* TreeSitterJavaScriptRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterJavaScriptRunestone;
+		};
+		B10000000000000000000010 /* TreeSitterJSONRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterJSONRunestone;
+		};
+		B10000000000000000000011 /* TreeSitterMarkdownRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterMarkdownRunestone;
+		};
+		B10000000000000000000012 /* TreeSitterPHPRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterPHPRunestone;
+		};
+		B10000000000000000000013 /* TreeSitterPythonRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterPythonRunestone;
+		};
+		B10000000000000000000014 /* TreeSitterRubyRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterRubyRunestone;
+		};
+		B10000000000000000000015 /* TreeSitterSQLRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterSQLRunestone;
+		};
+		B10000000000000000000016 /* TreeSitterSwiftRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterSwiftRunestone;
+		};
+		B10000000000000000000017 /* TreeSitterTypeScriptRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterTypeScriptRunestone;
+		};
+		B10000000000000000000018 /* TreeSitterYAMLRunestone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000002 /* XCRemoteSwiftPackageReference "TreeSitterLanguages" */;
+			productName = TreeSitterYAMLRunestone;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D39EDFF3301BE21E00962BA1 /* Project object */;
+}

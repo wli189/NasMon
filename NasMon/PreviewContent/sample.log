@@ -1,0 +1,13 @@
+2026-08-08 00:01:05 INFO  [FileStationService] Fetching share list from nas.local
+2026-08-08 00:01:06 INFO  [FileStationService] GET /webapi/entry.cgi?api=SYNO.FileStation.List&version=2
+2026-08-08 00:01:06 INFO  [FileStationService] 200 OK in 42ms
+2026-08-08 00:01:07 DEBUG [DashboardViewModel] Polling utilization: cpu=2.4% mem=38.1% disk=61.0%
+2026-08-08 00:01:08 INFO  [PreviewManager] Streaming /media/videos/sample.mkv via WebDAV
+2026-08-08 00:01:08 WARN  [PreviewManager] WebDAV probe failed (invalidURL); falling back to File Station
+2026-08-08 00:01:09 INFO  [StreamingDownloader] Range request: bytes=0-  (channel=fileStation)
+2026-08-08 00:01:12 INFO  [StreamingDownloader] received 1048576 bytes (progress 12%)
+2026-08-08 00:01:15 ERROR [PreviewCache] Quota exceeded: 1.00 GB budget reached, evicting oldest entries
+2026-08-08 00:01:18 INFO  [StreamingDownloader] received 8388608 bytes (progress 96%)
+2026-08-08 00:01:19 INFO  [StreamingDownloader] download complete: 8.7 MB in 10s
+2026-08-08 00:01:19 INFO  [PreviewCache] markComplete for 9f2c1a7b (sample.mkv)
+2026-08-08 00:01:20 DEBUG [AudioPlayerView] metadata: title="Sample Song" artist="Unknown"

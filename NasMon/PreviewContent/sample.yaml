@@ -1,0 +1,33 @@
+# NasMon sample configuration
+server:
+  host: 192.168.1.10
+  port: 5001
+  ssl: false
+
+notifications:
+  enabled: true
+  channels:
+    - email
+    - push
+
+dashboard:
+  refreshInterval: 30        # seconds
+  showTemperature: true
+  warningThresholds:
+    cpu: 70
+    memory: 70
+    disk: 70
+    temperature: 65
+  criticalThresholds:
+    cpu: 90
+    memory: 90
+    disk: 90
+    temperature: 75
+
+alerts:
+  - name: "High CPU"
+    condition: "cpu > 90"
+    action: "notify"
+  - name: "Disk Full"
+    condition: "disk > 95"
+    action: "notify + email"
