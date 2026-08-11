@@ -85,10 +85,10 @@ struct FullscreenVideoPlayerView: View {
                             maxHeight: .infinity,
                             alignment: .center
                         )
-                        // A small optical correction keeps the controls from
-                        // looking low in the short landscape viewport without
-                        // returning to the old bottom-bar-dependent layout.
-                        .offset(y: verticalSizeClass == .compact ? -18 : 0)
+                        // Apply separate optical corrections for each
+                        // orientation: portrait needs a little more lift
+                        // because the bottom controls carry more visual weight.
+                        .offset(y: verticalSizeClass == .compact ? -18 : -24)
 
                     VStack(spacing: 0) {
                         Spacer()
