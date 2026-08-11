@@ -116,10 +116,6 @@ struct VolumeControlView: View {
                 height: layout.controlHeight,
                 alignment: .trailing
             )
-            .animation(
-                .spring(response: 0.35, dampingFraction: 0.9),
-                value: isExpanded
-            )
     }
 
     // MARK: - Shared Control Content

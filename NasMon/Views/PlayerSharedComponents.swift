@@ -526,10 +526,10 @@ struct PlayerCenterControls: View {
     let isPlaying: Bool
     var spacing: CGFloat = 28
     var playButtonSize: CGFloat = 72
-    var playButtonFontSize: CGFloat = 28
+    var playButtonFontSize: CGFloat = 36
     /// Size of the rewind/forward buttons flanking the play button.
     var sideButtonSize: CGFloat = 54
-    var sideButtonFontSize: CGFloat = 22
+    var sideButtonFontSize: CGFloat = 28
     var playButtonStyle: PlayerPlayButtonStyle = .glass
     var usesGlassEffect = true
     var onTogglePlayback: () -> Void
@@ -576,7 +576,7 @@ struct PlayerCenterControls: View {
                 onTogglePlayback()
             } label: {
                 Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                    .font(.system(size: playButtonFontSize, weight: .semibold))
+                    .font(.system(size: sideButtonFontSize, weight: .semibold))
                     .frame(width: playButtonSize, height: playButtonSize)
                     .contentTransition(.symbolEffect(.replace))
                     .symbolEffect(.bounce, value: playAnimationTrigger)

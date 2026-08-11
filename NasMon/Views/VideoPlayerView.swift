@@ -75,11 +75,25 @@ struct FullscreenVideoPlayerView: View {
                 .onTapGesture { controls.toggleControls() }
 
             if controls.controlsVisible {
-                VStack(spacing: 0) {
-                    Spacer()
+                ZStack {
+                    // Keep transport controls at the viewport's true center.
+                    // Putting them in the same VStack as the bottom bar makes
+                    // the bottom bar consume layout space and pushes them up.
                     centerControls
-                    Spacer()
-                    bottomBar
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .center
+                        )
+                        // A small optical correction keeps the controls from
+                        // looking low in the short landscape viewport without
+                        // returning to the old bottom-bar-dependent layout.
+                        .offset(y: verticalSizeClass == .compact ? -18 : 0)
+
+                    VStack(spacing: 0) {
+                        Spacer()
+                        bottomBar
+                    }
                 }
                 .transition(.opacity)
             }
