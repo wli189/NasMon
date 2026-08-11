@@ -100,8 +100,11 @@ struct FullscreenVideoPlayerView: View {
                     .foregroundStyle(.white)
                 }
 
-                // Spacer is ToolbarContent; place it outside the group.
-                ToolbarSpacer(.fixed, placement: .topBarLeading)
+                // ToolbarSpacer was introduced in iOS 26. On iOS 18 the
+                // AirPlay button remains adjacent to the close button.
+                if #available(iOS 26.0, *) {
+                    ToolbarSpacer(.fixed, placement: .topBarLeading)
+                }
 
                 ToolbarItemGroup(placement: .topBarLeading) {
                     AirPlayButton()
@@ -156,7 +159,7 @@ struct FullscreenVideoPlayerView: View {
     // MARK: - Progress Bar
 
     private var bottomBar: some View {
-        GlassEffectContainer {
+        NasMonGlassContainer {
             VStack(alignment: .leading, spacing: 12) {
                 // Title: left-aligned above the progress bar.
                 Text(title)

@@ -496,7 +496,7 @@ struct PlayerControlButton: View {
                     .frame(width: size, height: size)
                     .symbolEffect(.rotate.byLayer, value: animationTrigger)
             }
-            .buttonStyle(.glass)
+            .nasMonPlayerButtonStyle()
             .buttonBorderShape(.circle)
             // Icon explicitly uses .primary; the system auto-toggles black/white by background brightness.
             .foregroundStyle(.primary)
@@ -539,7 +539,7 @@ struct PlayerCenterControls: View {
     @State private var playAnimationTrigger = 0
 
     var body: some View {
-        GlassEffectContainer(spacing: spacing) {
+        NasMonGlassContainer(spacing: spacing) {
             HStack(spacing: spacing) {
                 PlayerControlButton(
                     systemImage: "gobackward.10",
@@ -581,7 +581,7 @@ struct PlayerCenterControls: View {
                     .contentTransition(.symbolEffect(.replace))
                     .symbolEffect(.bounce, value: playAnimationTrigger)
             }
-            .buttonStyle(.glass)
+            .nasMonPlayerButtonStyle()
             .buttonBorderShape(.circle)
             .foregroundStyle(.primary)
 

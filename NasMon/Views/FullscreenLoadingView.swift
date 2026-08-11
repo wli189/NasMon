@@ -60,7 +60,7 @@ struct FullscreenLoadingView: View {
 
                 // Bottom progress bar matches the real player (glass container + same padding).
                 // Video title is also placed here (left above the bar), matching playback position. Non-interactive, semi-transparent during loading.
-                GlassEffectContainer {
+                NasMonGlassContainer {
                     VStack(alignment: .leading, spacing: 12) {
                         // Video: title left above the progress bar (matches playback position). Audio keeps its title in the nav bar.
                         if !isAudio {
@@ -156,7 +156,7 @@ struct FullscreenLoadingView: View {
                 .padding(.horizontal, 24)
             if showsRetry {
                 Button("Retry", action: onRetry)
-                    .buttonStyle(.glass)
+                    .nasMonGlassButtonStyle()
                     // Foreground uses .primary; tint uses system accentColor.
                     .foregroundStyle(.primary)
                     .tint(.accentColor)
