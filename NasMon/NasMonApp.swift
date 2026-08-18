@@ -35,5 +35,6 @@ struct RootView: View {
             // Try to resume a saved session first (valid SID means auto-login)
             await sessionViewModel.resumeSession()
         }
+        .tint(.accentColor)
     }
 }

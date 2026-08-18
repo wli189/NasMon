@@ -134,8 +134,8 @@ struct FullscreenAudioPlayerView: View {
 
     /// Default background when no artwork (or colorless cover): light gray, matching the black controls in light mode.
     private static let defaultBackgroundColors: [Color] = [
-        Color(red: 0.9, green: 0.9, blue: 0.9),
-        Color(red: 0.9, green: 0.9, blue: 0.9),
+        .nasMonPlayerFallbackBackground,
+        .nasMonPlayerFallbackBackground,
     ]
 
     /// Whether the current UI uses a dark theme (colorful cover → gradient; no cover → light gray).

@@ -129,8 +129,8 @@ struct FullscreenLoadingView: View {
                 // Matches FullscreenAudioPlayerView's no-artwork default background.
                 LinearGradient(
                     colors: [
-                        Color(red: 0.9, green: 0.9, blue: 0.9),
-                        Color(red: 0.9, green: 0.9, blue: 0.9),
+                        .nasMonPlayerFallbackBackground,
+                        .nasMonPlayerFallbackBackground,
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

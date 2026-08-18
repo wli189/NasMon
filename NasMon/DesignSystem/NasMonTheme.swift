@@ -13,64 +13,35 @@ import UIKit
 
 extension Color {
     /// Brand accent used for primary actions, selected navigation and folders.
-    static let nasMonAccent = Color.nasMonDynamic(
-        light: UIColor(red: 0.0, green: 0.478, blue: 1.0, alpha: 1.0),
-        dark: UIColor(red: 0.25, green: 0.612, blue: 1.0, alpha: 1.0)
-    )
+    /// The asset catalog is the single source of truth for light and dark values.
+    static let nasMonAccent = Color.accentColor
 
     /// Background for grouped pages such as Dashboard and server selection.
-    static let nasMonPageBackground = Color.nasMonDynamic(
-        light: UIColor(red: 0.949, green: 0.957, blue: 0.973, alpha: 1.0),
-        dark: UIColor(red: 0.031, green: 0.051, blue: 0.086, alpha: 1.0)
-    )
+    static let nasMonPageBackground = Color("NasMonPageBackground")
 
     /// Primary surface for cards and bounded content.
-    static let nasMonSurface = Color.nasMonDynamic(
-        light: .white,
-        dark: UIColor(red: 0.071, green: 0.094, blue: 0.141, alpha: 1.0)
-    )
+    static let nasMonSurface = Color("NasMonSurface")
 
     /// Secondary surface for nested content and supporting controls.
-    static let nasMonSurfaceSecondary = Color.nasMonDynamic(
-        light: UIColor(red: 0.973, green: 0.976, blue: 0.984, alpha: 1.0),
-        dark: UIColor(red: 0.098, green: 0.129, blue: 0.192, alpha: 1.0)
-    )
+    static let nasMonSurfaceSecondary = Color("NasMonSurfaceSecondary")
 
-    static let nasMonOnline = Color.nasMonDynamic(
-        light: UIColor(red: 0.157, green: 0.655, blue: 0.278, alpha: 1.0),
-        dark: UIColor(red: 0.204, green: 0.78, blue: 0.349, alpha: 1.0)
-    )
+    static let nasMonOnline = Color("NasMonOnline")
 
-    static let nasMonWarning = Color.nasMonDynamic(
-        light: UIColor(red: 0.78, green: 0.40, blue: 0.02, alpha: 1.0),
-        dark: UIColor(red: 1.0, green: 0.624, blue: 0.039, alpha: 1.0)
-    )
+    static let nasMonWarning = Color("NasMonWarning")
 
-    static let nasMonCritical = Color.nasMonDynamic(
-        light: UIColor(red: 0.85, green: 0.15, blue: 0.18, alpha: 1.0),
-        dark: UIColor(red: 1.0, green: 0.271, blue: 0.227, alpha: 1.0)
-    )
+    static let nasMonCritical = Color("NasMonCritical")
 
     /// File type accents used for quick scanning in the native file list.
-    static let nasMonFileImage = Color.nasMonDynamic(
-        light: UIColor(red: 0.58, green: 0.23, blue: 0.78, alpha: 1.0),
-        dark: UIColor(red: 0.75, green: 0.35, blue: 0.95, alpha: 1.0)
-    )
+    static let nasMonFileImage = Color("NasMonFileImage")
 
-    static let nasMonFileVideo = Color.nasMonDynamic(
-        light: UIColor(red: 0.86, green: 0.12, blue: 0.35, alpha: 1.0),
-        dark: UIColor(red: 1.0, green: 0.22, blue: 0.40, alpha: 1.0)
-    )
+    static let nasMonFileVideo = Color("NasMonFileVideo")
 
-    static let nasMonFileAudio = Color.nasMonDynamic(
-        light: UIColor(red: 0.78, green: 0.40, blue: 0.02, alpha: 1.0),
-        dark: UIColor(red: 1.0, green: 0.624, blue: 0.039, alpha: 1.0)
-    )
+    static let nasMonFileAudio = Color("NasMonFileAudio")
 
-    static let nasMonFileText = Color.nasMonDynamic(
-        light: UIColor(red: 0.0, green: 0.48, blue: 0.62, alpha: 1.0),
-        dark: UIColor(red: 0.20, green: 0.68, blue: 0.86, alpha: 1.0)
-    )
+    static let nasMonFileText = Color("NasMonFileText")
+
+    /// Default light background for audio playback without album artwork.
+    static let nasMonPlayerFallbackBackground = Color("NasMonPlayerFallbackBackground")
 
     /// System-adaptive canvas used by PDF and text reading surfaces.
     static let nasMonContentBackground = Color(uiColor: .systemBackground)
@@ -78,13 +49,7 @@ extension Color {
     /// Used only by fully immersive media surfaces.
     static let nasMonImmersiveBackground = Color.black
 
-    private static func nasMonDynamic(light: UIColor, dark: UIColor) -> Color {
-        Color(uiColor: UIColor { traits in
-            traits.userInterfaceStyle == .dark ? dark : light
-        })
-    }
 }
-
 // MARK: - Layout Tokens
 
 enum NasMonSpacing {
