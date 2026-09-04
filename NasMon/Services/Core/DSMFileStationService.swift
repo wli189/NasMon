@@ -32,7 +32,7 @@ extension DSMClient {
     private func urlEncodedFolderPath(_ path: String) -> String {
         // Only allow alphanumeric and a minimal set of safe characters.
         // Everything else (including /, #, &, ?, @, space, etc.) gets percent-encoded.
-        var allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~!$'()*+,;=@[]")
+        let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~!$'()*+,;=@[]")
         return path.addingPercentEncoding(withAllowedCharacters: allowed) ?? path
     }
     

@@ -28,6 +28,9 @@ struct ServerSelectionView: View {
     var body: some View {
         NavigationStack {
             content
+                .frame(maxWidth: 720)
+                .frame(maxWidth: .infinity)
+                .background(Color.nasMonPageBackground.ignoresSafeArea())
                 .navigationTitle("Servers")
                 .toolbar {
                     if !viewModel.savedServers.isEmpty {
@@ -140,7 +143,6 @@ struct ServerSelectionView: View {
                 action: { showAddServer = true }
             )
             .padding(.horizontal, NasMonSpacing.pageHorizontal)
-            .background(Color.nasMonPageBackground)
         } else {
             List {
                 Section {
@@ -188,7 +190,6 @@ struct ServerSelectionView: View {
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
-            .background(Color.nasMonPageBackground)
         }
     }
 

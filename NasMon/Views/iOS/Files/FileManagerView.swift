@@ -34,7 +34,7 @@ struct FileManagerNavigationRoot: View {
             }
         }
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarBackground(Color.nasMonSurface, for: .navigationBar)
+        .toolbarBackground(Color.nasMonPageBackground, for: .navigationBar)
     }
 }
 
@@ -66,7 +66,11 @@ struct FileManagerView: View {
     var body: some View {
         content
             .navigationTitle(currentFolderTitle)
-            .navigationBarTitleDisplayMode(.large)
+            // A large title can collapse to an empty-looking toolbar inside
+            // a NavigationSplitView detail stack. Keep the current folder
+            // title in the navigation bar so it remains visible while
+            // scrolling and when switching between iPhone and iPad layouts.
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(folderPath != nil)
             .toolbar {
                 navigationToolbar

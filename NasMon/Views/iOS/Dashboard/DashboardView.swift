@@ -35,6 +35,8 @@ struct DashboardView: View {
             }
             .padding(.horizontal, NasMonSpacing.pageHorizontal)
             .padding(.vertical, NasMonSpacing.xLarge)
+            .frame(maxWidth: 920)
+            .frame(maxWidth: .infinity)
         }
         .background(Color.nasMonPageBackground.ignoresSafeArea())
         .navigationTitle("Dashboard")

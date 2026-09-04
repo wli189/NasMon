@@ -626,7 +626,7 @@ Implemented in the server selection, login, feature selection, file manager, and
 
 ### Dashboard
 
-Implemented in `NasMon/Views/DashboardView.swift` with `NasMonCompactMetricCard`, `NasMonMetricCard`, and `NasMonStatusBadge`.
+Implemented in `NasMon/Views/iOS/Dashboard/DashboardView.swift` with `NasMonCompactMetricCard`, `NasMonMetricCard`, and `NasMonStatusBadge`.
 
 ### File Previews
 
