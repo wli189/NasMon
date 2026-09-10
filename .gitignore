@@ -1,12 +1,28 @@
-# Secrets and API Keys
-config/*.key
-*.env
-.env
+# ===========================================
+# NasMon - Git Ignore
+# Based on Swift.gitignore template
+# ===========================================
 
+# -------------------------------------------
 # OS generated
+# -------------------------------------------
 .DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
 
+# -------------------------------------------
 # Xcode
+# -------------------------------------------
+## User settings
+xcuserdata/
+
+## Build artifacts
 build/
 DerivedData/
 *.pbxuser
@@ -17,24 +33,49 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
 *.moved-aside
 *.xccheckout
 *.hmap
 *.ipa
-*.xcworkspace/
-*.pbxproj.xcscheme
-*.xcuserdata
+*.xcarchive
 
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# -------------------------------------------
+# Swift Package Manager
+# -------------------------------------------
+.build/
+# .swiftpm   (only if you add Package.pins)
+
+# -------------------------------------------
 # CocoaPods
+# -------------------------------------------
 Pods/
 local.xcconfig
 
-# Fastlane
+# -------------------------------------------
+# Carthage
+# -------------------------------------------
+Carthage/Build/
+
+# -------------------------------------------
+# fastlane
+# -------------------------------------------
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-# .scratch for agent-generated files
+# -------------------------------------------
+# Secrets and API Keys
+# -------------------------------------------
+config/*.key
+*.env
+.env
+
+# -------------------------------------------
+# Agent-generated scratch files
+# -------------------------------------------
 .scratch/
