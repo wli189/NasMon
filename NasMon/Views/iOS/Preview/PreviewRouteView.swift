@@ -136,7 +136,9 @@ struct PreviewRouteView: View {
                     DocumentPreviewStatusView(
                         title: "Preparing PDF…",
                         showsProgress: true,
-                        progress: viewModel.progress
+                        progress: viewModel.progress,
+                        receivedBytes: viewModel.receivedBytes,
+                        totalBytes: viewModel.totalBytes
                     )
                 }
             case .text:
@@ -153,7 +155,9 @@ struct PreviewRouteView: View {
                     DocumentPreviewStatusView(
                         title: "Preparing Text…",
                         showsProgress: true,
-                        progress: viewModel.progress
+                        progress: viewModel.progress,
+                        receivedBytes: viewModel.receivedBytes,
+                        totalBytes: viewModel.totalBytes
                     )
                 }
             default:
@@ -162,7 +166,10 @@ struct PreviewRouteView: View {
         } else {
             DocumentPreviewStatusView(
                 title: "Preparing Preview…",
-                showsProgress: true
+                showsProgress: true,
+                progress: viewModel.progress,
+                receivedBytes: viewModel.receivedBytes,
+                totalBytes: viewModel.totalBytes
             )
         }
     }
@@ -219,7 +226,10 @@ struct PreviewRouteView: View {
     private var loadingView: some View {
         DocumentPreviewStatusView(
             title: "Preparing Preview…",
-            showsProgress: true
+            showsProgress: true,
+            progress: viewModel.progress,
+            receivedBytes: viewModel.receivedBytes,
+            totalBytes: viewModel.totalBytes
         )
     }
 

@@ -38,6 +38,10 @@ final class PreviewViewModel {
     /// Streaming progress (0...1); `nil` when not streaming.
     var progress: Double?
 
+    /// Downloaded and expected byte counts for transfer feedback.
+    var receivedBytes: Int64 = 0
+    var totalBytes: Int64?
+
     /// Whether bytes are still arriving.
     var isStreaming = false
 
@@ -85,6 +89,8 @@ final class PreviewViewModel {
         errorMessage = nil
         isStreaming = true
         progress = 0
+        receivedBytes = 0
+        totalBytes = file.additional?.size
         // The cache URL is known up front — progressive surfaces render it
         // while bytes land.
         streamingURL = PreviewCache.url(for: file, server: activeClient?.cacheScope)
@@ -93,8 +99,14 @@ final class PreviewViewModel {
         do {
             let url = try await PreviewManager.preparePreview(file: file, client: client, category: category) { [weak self] received, total in
                 guard let self, !Task.isCancelled else { return }
-                let fraction: Double? = total.flatMap { $0 > 0 ? Double(received) / Double($0) : nil }
                 Task { @MainActor in
+                    self.receivedBytes = received
+                    if let total {
+                        self.totalBytes = total
+                    }
+                    let fraction = self.totalBytes.flatMap {
+                        $0 > 0 ? Double(received) / Double($0) : nil
+                    }
                     self.progress = fraction.map { min(max($0, 0), 1) }
                 }
             }
@@ -105,6 +117,8 @@ final class PreviewViewModel {
             localFileURL = url
             isStreaming = false
             progress = nil
+            receivedBytes = 0
+            totalBytes = nil
         } catch is CancellationError {
             handleCancellation()
         } catch {
@@ -124,6 +138,8 @@ final class PreviewViewModel {
         }
         isStreaming = false
         progress = nil
+        receivedBytes = 0
+        totalBytes = nil
     }
 
     /// Whether the currently streamed entry is complete.
@@ -134,5 +150,7 @@ final class PreviewViewModel {
     private func handleCancellation() {
         isStreaming = false
         progress = nil
+        receivedBytes = 0
+        totalBytes = nil
     }
 }

@@ -170,22 +170,36 @@ struct DocumentPreviewStatusView: View {
     var systemImage: String?
     var showsProgress = false
     /// Download progress (0...1). When non-nil, `showsProgress` renders a
-    /// determinate circular progress ring instead of an indeterminate spinner.
+    /// determinate horizontal progress bar.
     var progress: Double? = nil
+    var receivedBytes: Int64? = nil
+    var totalBytes: Int64? = nil
     var retry: (() -> Void)?
 
     var body: some View {
         Group {
             if showsProgress {
                 VStack(spacing: NasMonSpacing.medium) {
-                    if let progress {
-                        determinateProgress(progress)
-                    } else {
-                        ProgressView()
-                    }
                     Text(title)
                         .font(NasMonTypography.supporting)
                         .foregroundStyle(.secondary)
+
+                    if let totalBytes, totalBytes > 0 {
+                        Text("\(formattedBytes(receivedBytes ?? 0)) / \(formattedBytes(totalBytes))")
+                            .font(NasMonTypography.metadata)
+                            .monospacedDigit()
+                            .foregroundStyle(.secondary)
+                            .accessibilityLabel("\(formattedBytes(receivedBytes ?? 0)) downloaded of \(formattedBytes(totalBytes))")
+                    }
+
+                    if let progress {
+                        ProgressView(value: min(max(progress, 0), 1))
+                            .tint(.nasMonAccent)
+                    } else {
+                        ProgressView()
+                            .progressViewStyle(.linear)
+                            .tint(.nasMonAccent)
+                    }
 
                     if let message {
                         Text(message)
@@ -219,27 +233,8 @@ struct DocumentPreviewStatusView: View {
         .padding(NasMonSpacing.xLarge)
     }
 
-    /// A circular progress ring with the percentage centered inside.
-    private func determinateProgress(_ value: Double) -> some View {
-        let fraction = min(max(value, 0), 1)
-        return ZStack {
-            Circle()
-                .stroke(Color.secondary.opacity(0.2), lineWidth: 5)
-            Circle()
-                .trim(from: 0, to: fraction)
-                .stroke(
-                    Color.nasMonAccent,
-                    style: StrokeStyle(lineWidth: 5, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-                .animation(.linear, value: fraction)
-            Text(fraction.formatted(.percent.precision(.fractionLength(0))))
-                .font(NasMonTypography.supporting.weight(.semibold))
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-        }
-        .frame(width: 72, height: 72)
-        .accessibilityLabel("Downloading \(fraction.formatted(.percent.precision(.fractionLength(0))))")
+    private func formattedBytes(_ bytes: Int64) -> String {
+        ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
 }
 
